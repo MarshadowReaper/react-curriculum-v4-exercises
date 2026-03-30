@@ -3,10 +3,25 @@
 
 export default function StudentWork() {
   //add variables here
+  const name = 'Tajee';
+  const age = 27;
+  const hobbies = ['Gaming', 'Collecting'];
+
   return (
     <div>
       {/* add JSX here */}
-      <p> Student output will go here </p>
+
+      <h1>{name}</h1>
+      <p>
+        Hello my name is {name}, I'm currently {age} years old pleased to meet
+        you. I'm new to react and am after another goal, I'm hoping to bring
+        more energy that I brought last time to achieve it just like last time.
+      </p>
+      <ul>
+        {hobbies.map((item, index) => (
+          <li key={index}> {item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
