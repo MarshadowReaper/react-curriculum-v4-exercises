@@ -14,7 +14,7 @@ export default function BugMutatedState() {
 
   function handleAdd() {
     count++;
-    setCount(count);
+    setCount((previous) => previous + 1);
   }
 
   return (
