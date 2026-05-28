@@ -1,7 +1,7 @@
 function TaskItem({ task }) {
   return (
     <li>
-      {task.title} {task.isCompleted ? '✅' : '⏳'}
+      {task.title} {task.completed ? '✅' : '⏳'}
     </li>
   );
 }
