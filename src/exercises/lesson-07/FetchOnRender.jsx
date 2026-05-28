@@ -9,7 +9,7 @@ export default function FetchOnRender() {
       const posts = await getPosts();
       setPosts(posts);
     }
-    fetchPosts;
+    fetchPosts();
   }, []);
   return (
     <div>
