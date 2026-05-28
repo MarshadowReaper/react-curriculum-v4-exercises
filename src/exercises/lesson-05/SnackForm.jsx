@@ -8,56 +8,70 @@ export default function SnackForm({
   updateSnack,
   className,
 }) {
-  const [name, setName] = useState("")
-const [rating, setRating] = useState("")
-const [touched, setTouched ] = useState({name: false, rating: false})
+  const [name, setName] = useState('');
+  const [rating, setRating] = useState('');
+  const [touched, setTouched] = useState({ name: false, rating: false });
   const isEditing = Boolean(editingSnack);
+
   useEffect(() => {
-    if (editingSnack){
+    if (editingSnack) {
       setName(editingSnack.name);
       setRating(editingSnack.rating);
-    } 
-    else {
-      setName("")
-      setRating("")
-      setTouched({name: false, rating: false})
+    } else {
+      setName('');
+      setRating('');
+      setTouched({ name: false, rating: false });
     }
-
-  },[editingSnack])
+  }, [editingSnack]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const name = formData.get('name');
-    const rating = formData.get('rating');
-    
+    if (!validateName() || !validateRating()) {
+      setTouched((prev) => ({ ...prev, name: true, rating: true }));
+      return;
+    }
+
     if (isEditing) {
-      updateSnack(editingSnack.id, setName, setRating);
+      updateSnack(editingSnack.id, name, rating);
     } else {
       addSnack(name, rating);
-      e.target.reset();
+      setName('');
+      setRating('');
     }
-  
-     }
-     function validateName(){
-      if(name.trim() !== "") {
-        return true
-      }
-      else{
-        return false
-      }
-     }
-     function validateRating() {
-      if (rating !== ""){
-        return true
-      }
-      else{
-        return false
-      }
-        
-     }
-     function getNameError(name){
-      if (validateName == true && name == touched)
+  }
+  function validateName() {
+    if (name.trim() !== '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function validateRating() {
+    if (rating !== '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function getNameError() {
+    const errorMessageName = 'Snack name is required';
+    if (!validateName() && touched.name) {
+      return errorMessageName;
+    } else {
+      return null;
+    }
+  }
+
+  function getRatingError() {
+    const errorMessageRating = 'Please select a rating';
+    if (!validateRating() && touched.rating) {
+      return errorMessageRating;
+    } else {
+      return null;
+    }
+  }
+  const nameError = getNameError();
+  const ratingError = getRatingError();
 
   return (
     <form
@@ -73,13 +87,13 @@ const [touched, setTouched ] = useState({name: false, rating: false})
         <input
           type="text"
           name="name"
-          value={ name}
-          
+          value={name}
           className={styles['field-input']}
           placeholder="Enter snack name"
-          onChange= {(event) => setName (event.target.value)}
-          onFocus= {() => setTouched(prev => ({ ...prev, name: true }))}
+          onChange={(event) => setName(event.target.value)}
+          onFocus={() => setTouched((prev) => ({ ...prev, name: true }))}
         />
+        {nameError && <div className={styles.error}>{nameError}</div>}
       </div>
 
       <div className={styles['field-container']}>
@@ -87,16 +101,15 @@ const [touched, setTouched ] = useState({name: false, rating: false})
         <input
           type="number"
           name="rating"
-          value={ rating}
-          
+          value={rating}
           min="1"
           max="5"
           className={styles['field-input']}
           placeholder="Rate 1-5"
-          onChange ={(event) => setRating(event.target.value)} 
-          
-          onFocus ={() => setTouched(prev => ({ ...prev, rating: true }))}
+          onChange={(event) => setRating(event.target.value)}
+          onFocus={() => setTouched((prev) => ({ ...prev, rating: true }))}
         />
+        {ratingError && <div className={styles.error}>{ratingError}</div>}
       </div>
 
       <div className={styles['button-container']}>
