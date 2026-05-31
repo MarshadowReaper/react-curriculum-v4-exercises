@@ -16,3 +16,4 @@ export default function Parent() {
     </div>
   );
 }
+// had to add a Child custom component to update with the Child.jsx so that it can update as you press the button.
