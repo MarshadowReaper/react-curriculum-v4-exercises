@@ -1,5 +1,5 @@
 function filterTask(tasks, filter) {
-  let visibleTasks = useListFilter();
+  let visibleTasks = tasks;
 
   if (filter === 'completed') {
     visibleTasks = tasks.filter((task) => task.completed);
@@ -12,4 +12,3 @@ function filterTask(tasks, filter) {
   return visibleTasks;
 }
 export default filterTask;
-//It skipped over this as well.

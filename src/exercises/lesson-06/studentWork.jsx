@@ -14,7 +14,7 @@ export default function StudentWork() {
   if (loading) {
     return <p>Loading tasks...</p>;
   }
-  //For some unknown reason Git didn't want to add this.
+
   return (
     <div>
       {/* #3: Hardcoded UI, not reusable */}

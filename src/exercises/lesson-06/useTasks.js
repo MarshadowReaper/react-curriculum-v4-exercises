@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 function useTasks() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
