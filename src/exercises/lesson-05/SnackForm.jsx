@@ -11,6 +11,9 @@ export default function SnackForm({
   const [name, setName] = useState('');
   const [rating, setRating] = useState('');
   const [touched, setTouched] = useState({ name: false, rating: false });
+  const [name, setName] = useState('');
+  const [rating, setRating] = useState('');
+  const [touched, setTouched] = useState({ name: false, rating: false });
   const isEditing = Boolean(editingSnack);
 
   useEffect(() => {
@@ -26,10 +29,9 @@ export default function SnackForm({
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!validateName() || !validateRating()) {
-      setTouched((prev) => ({ ...prev, name: true, rating: true }));
-      return;
-    }
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const rating = formData.get('rating');
 
     if (isEditing) {
       updateSnack(editingSnack.id, name, rating);
@@ -54,25 +56,11 @@ export default function SnackForm({
     }
   }
   function getNameError() {
-    const errorMessageName = 'Snack name is required';
     if (!validateName() && touched.name) {
-      return errorMessageName;
-    } else {
-      return null;
+      return 'Snack name is required';
     }
+    return '';
   }
-
-  function getRatingError() {
-    const errorMessageRating = 'Please select a rating';
-    if (!validateRating() && touched.rating) {
-      return errorMessageRating;
-    } else {
-      return null;
-    }
-  }
-  const nameError = getNameError();
-  const ratingError = getRatingError();
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -88,8 +76,11 @@ export default function SnackForm({
           type="text"
           name="name"
           value={name}
+          value={name}
           className={styles['field-input']}
           placeholder="Enter snack name"
+          onChange={(event) => setName(event.target.value)}
+          onFocus={() => setTouched((prev) => ({ ...prev, name: true }))}
           onChange={(event) => setName(event.target.value)}
           onFocus={() => setTouched((prev) => ({ ...prev, name: true }))}
         />
@@ -102,10 +93,13 @@ export default function SnackForm({
           type="number"
           name="rating"
           value={rating}
+          value={rating}
           min="1"
           max="5"
           className={styles['field-input']}
           placeholder="Rate 1-5"
+          onChange={(event) => setRating(event.target.value)}
+          onFocus={() => setTouched((prev) => ({ ...prev, rating: true }))}
           onChange={(event) => setRating(event.target.value)}
           onFocus={() => setTouched((prev) => ({ ...prev, rating: true }))}
         />
