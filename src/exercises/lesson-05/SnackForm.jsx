@@ -61,6 +61,15 @@ export default function SnackForm({
     }
     return '';
   }
+  function getRatingError() {
+    if (!validateRating() && touched.rating) {
+      return 'Please select a rating';
+    }
+    return '';
+  }
+
+  const nameError = getNameError();
+  const ratingError = getRatingError();
   return (
     <form
       onSubmit={handleSubmit}
