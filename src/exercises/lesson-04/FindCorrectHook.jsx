@@ -5,7 +5,7 @@ export default function FindCorrectHook() {
   const [clickCount, setClickCount] = useState(0); // ← incorrect implementation
 
   function handleClick() {
-    setClickCount(clickCount + 1);
+    setClickCount((prev) => +1);
   }
 
   return (
@@ -15,3 +15,4 @@ export default function FindCorrectHook() {
     </div>
   );
 }
+// useRef wouldn't be used here, it lets you reference a value it doesn't stop the re-render from triggering. useState would allow you to update the state value without triggering a re-render.

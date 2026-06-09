@@ -1,5 +1,5 @@
-import { Link, NavLink } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+import Navigation from './Navigation';
 export default function Header({ user }) {
   // Active link styling helper
   const navLinkStyles = ({ isActive }) => ({
@@ -13,6 +13,7 @@ export default function Header({ user }) {
   return (
     <header style={{ padding: 12, borderBottom: '1px solid #ddd' }}>
       <h1 style={{ margin: 0 }}>Lesson 10 Routing Demo</h1>
+      <Navigation user={user} />
 
       <nav style={{ display: 'flex', gap: 12, marginTop: 8 }}>
         <a
@@ -22,6 +23,17 @@ export default function Header({ user }) {
         >
           History API (MDN)
         </a>
+        <NavLink to="/" style={navLinkStyles}>
+          Home
+        </NavLink>
+        <NavLink to="/checkout" style={navLinkStyles}>
+          Checkout
+        </NavLink>
+        {user.isLoggedIn && (
+          <NavLink to="/account" style={navLinkStyles}>
+            Account
+          </NavLink>
+        )}
       </nav>
 
       <div style={{ marginTop: 8 }}>

@@ -5,7 +5,7 @@ export default function Parent() {
   const [count, setCount] = useState(0);
 
   function increment() {
-    setCount(count + 1);
+    setCount((prev) => prev + 1);
   }
 
   return (
@@ -16,3 +16,4 @@ export default function Parent() {
     </div>
   );
 }
+// had to add a Child custom component to update with the Child.jsx so that it can update as you press the button.
