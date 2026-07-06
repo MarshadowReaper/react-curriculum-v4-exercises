@@ -13,19 +13,19 @@
 */
 
 export default function BugProps({ name = 'friend' }) {
-  let [message, setMessage] = useState('Hello, ' + name);
+  let message = 'Hello, ' + name;
 
   function handleChange() {
-    setMessage('Hello ' + name + '!');
+    message = 'Hi, ' + name + '!';
   }
 
   return (
-    <>
+    <div>
       <p>{message}</p>
       <button onClick={handleChange}>Change Greeting</button>
-    </>
+    </div>
   );
 }
 
 // Explanation:
-// (I changed the let variable to take advantage of the useState to be able to change the state, next I set a setMessage to handle the change for the name.)
+// (Write your explanation here)

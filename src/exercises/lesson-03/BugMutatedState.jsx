@@ -7,13 +7,13 @@
   However, the way the count is being changed causes the component to behave
   incorrectly.
 */
-
 import { useState } from 'react';
 export default function BugMutatedState() {
   let [count, setCount] = useState(0);
 
   function handleAdd() {
-    setCount((previous) => previous + 1);
+    count++;
+    setCount(count);
   }
 
   return (
@@ -25,4 +25,4 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (I removed count++ as it was mutated and not recognizable to React)
+// (Write your explanation here)
