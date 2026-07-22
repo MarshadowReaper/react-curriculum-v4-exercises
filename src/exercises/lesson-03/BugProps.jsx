@@ -12,6 +12,7 @@
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
 
+import { useState } from 'react';
 export default function BugProps({ name = 'friend' }) {
   let [message, setMessage] = useState('Hello, ' + name);
 
