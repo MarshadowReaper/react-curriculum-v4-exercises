@@ -12,7 +12,8 @@ export default function Parent() {
     <div>
       <h2>Parent-Child Communication</h2>
       <p>Counter: {count}</p>
-      <Child />
+      <Child increment={increment} />
     </div>
   );
 }
+// had to add a Child custom component to update with the Child.jsx so that it can update as you press the button.
