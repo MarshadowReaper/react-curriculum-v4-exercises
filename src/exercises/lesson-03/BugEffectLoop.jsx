@@ -15,13 +15,14 @@ export default function BugEffectLoop() {
 
   useEffect(() => {
     setCount(count + 1);
-  }, [count]);
+  }, []);
 
-  return;
-  <>
-    <p>Bug 1 Count: {count}</p>;
-  </>;
+  return (
+    <>
+      <p>Bug 1 Count: {count}</p>
+    </>
+  );
 }
 
 // Explanation:
-// (Write your explanation here)
+// (So the problem was setCount was running on every render, so to make it run only once I added the [], and the return value is wrong. it should be in ().)
