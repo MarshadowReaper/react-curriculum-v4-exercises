@@ -20,10 +20,10 @@ export default function BugProps({ name = 'friend' }) {
   }
 
   return (
-    <>
+    <div>
       <p>{message}</p>
       <button onClick={handleChange}>Change Greeting</button>
-    </>
+    </div>
   );
 }
 

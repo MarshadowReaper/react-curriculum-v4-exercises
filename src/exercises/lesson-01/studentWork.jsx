@@ -9,8 +9,6 @@ export default function StudentWork() {
 
   return (
     <div>
-      {/* add JSX here */}
-
       <h1>{name}</h1>
       <p>
         Hello my name is {name}, I'm currently {age} years old pleased to meet
