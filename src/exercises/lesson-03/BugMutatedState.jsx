@@ -13,7 +13,6 @@ export default function BugMutatedState() {
   let [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
     setCount((previous) => previous + 1);
   }
 
@@ -26,4 +25,4 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// (I removed count++ as it was mutated and not recognizable to React)
