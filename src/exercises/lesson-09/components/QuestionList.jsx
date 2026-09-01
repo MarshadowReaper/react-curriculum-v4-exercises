@@ -5,7 +5,7 @@ import styles from '../StudentWork.module.css';
 
 // Question List Component
 export function QuestionList() {
-  const { state } = useContext(SurveyContext);
+  const { state, dispatch } = useContext(SurveyContext);
 
   return (
     <div className={styles['question-list']}>

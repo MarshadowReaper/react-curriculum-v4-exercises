@@ -7,9 +7,12 @@ export default function BugStrictMode() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return (
@@ -20,4 +23,4 @@ export default function BugStrictMode() {
   );
 }
 
-// Write your explanation of how StrictMode helps us catch this bug
+// I tried to create a variable for a timer as it wouldn't allow me to use setInterval as it wouldn't be defined for clearInterval. this stopped the strictmode bug

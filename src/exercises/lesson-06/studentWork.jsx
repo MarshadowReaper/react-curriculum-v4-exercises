@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
-
+function TaskItem({ task }) {
+  return (
+    <li>
+      {task.title} {task.completed ? '✅' : '⏳'}
+    </li>
+  );
+}
 export default function StudentWork() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
 
   //  #1: Data fetching + state + UI logic all mixed together
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setTasks([
@@ -20,6 +27,7 @@ export default function StudentWork() {
   }, []);
 
   // #2: Filtering logic inside component
+
   let visibleTasks = tasks;
   if (filter === 'completed') {
     visibleTasks = tasks.filter((task) => task.completed);
@@ -48,9 +56,7 @@ export default function StudentWork() {
       {/* #5: Inline list rendering */}
       <ul>
         {visibleTasks.map((task) => (
-          <li key={task.id}>
-            {task.title} {task.completed ? '✅' : '⏳'}
-          </li>
+          <TaskItem key={task.id} task={task} />
         ))}
       </ul>
     </div>
